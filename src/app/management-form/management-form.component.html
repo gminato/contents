@@ -1,0 +1,13 @@
+<form [formGroup]="appForm" (ngSubmit)="onSubmit()">
+    <input type="file" formControlName="file" accept=".apk, .ipa" />
+    <input type="file" formControlName="thumbnail" accept=".jpg, .jpeg, .png" />
+    <input type="text" formControlName="displayName" placeholder="Display Name" />
+    <input type="text" formControlName="package" placeholder="Package" />
+    <textarea formControlName="description" placeholder="Description"></textarea>
+    <input type="text" formControlName="versionNumber" placeholder="Version Number" />
+    <input type="text" formControlName="developer" placeholder="Developer" />
+    <input type="text" formControlName="playstoreUrl" placeholder="Playstore URL" />
+    
+    <button type="submit" [disabled]="appForm.invalid">Submit</button>
+  </form>
+  

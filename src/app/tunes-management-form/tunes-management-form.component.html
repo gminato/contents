@@ -1,46 +1,35 @@
 <mat-card>
-    <form [formGroup]="tunesForm" (ngSubmit)="onTunesSubmit()">
-        <div class="form-row">
-          <label for="file">File</label>
-          <input type="file" formControlName="file" accept=".mp3" />
-        </div>
-        
-        <div class="form-row">
-          <label for="thumbnail">Thumbnail</label>
-          <input type="file" formControlName="thumbnail" accept=".jpg, .jpeg" />
-        </div>
-      
-        <div class="form-row">
-          <label for="fileName">File Name</label>
-          <input type="text" formControlName="fileName" />
-        </div>
-      
-        <div class="form-row">
-          <label for="description">Description</label>
-          <textarea formControlName="description"></textarea>
-        </div>
-      
-        <div class="form-row">
-          <label for="album">Album</label>
-          <input type="text" formControlName="album" />
-        </div>
-      
-        <div class="form-row">
-          <label for="author">Author</label>
-          <input type="text" formControlName="author" />
-        </div>
-      
-        <div class="form-row">
-          <label for="hashtags">Hashtags</label>
-          <mat-form-field appearance="fill">
-            <mat-label>Select Hashtags</mat-label>
-            <mat-select formControlName="hashtags" multiple>
-              <mat-option *ngFor="let hashtag of musicHashtags" [value]="hashtag">{{ hashtag }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      
-        <button type="submit" [disabled]="tunesForm.invalid">Submit</button>
-      </form>
-    
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="AppName">
+      <mat-header-cell *matHeaderCellDef> App Name </mat-header-cell>
+      <mat-cell *matCellDef="let app"> {{ app.AppName }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="AppType">
+      <mat-header-cell *matHeaderCellDef> App Type </mat-header-cell>
+      <mat-cell *matCellDef="let app"> {{ app.AppType }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="UploadedBy">
+      <mat-header-cell *matHeaderCellDef> Uploaded By </mat-header-cell>
+      <mat-cell *matCellDef="let app"> {{ app.UploadedBy }} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let app"> {{ app.Status }} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </mat-card>
+
+<div style="bottom:1rem ;right:1rem;position: absolute;"  >
+  <button  mat-fab color="primary" aria-label="Example icon button with a delete icon" (click) = "openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+
+

@@ -21,6 +21,7 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { SoftwareManagementFormComponent } from './management-form/management-form.component';
 
 // Import this module
 
@@ -32,6 +33,7 @@ import {
     TunesManagementFormComponent,
     TunesIngestionFormComponent,
     WallpaperIngestionFormComponent,
+    SoftwareManagementFormComponent,
   ],
   imports: [
     BrowserModule,

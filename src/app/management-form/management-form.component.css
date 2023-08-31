@@ -1,35 +1,71 @@
-/* Styles for the form container */
-form {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
-  /* Styles for form fields */
-  input[type="file"],
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  /* Styles for the submit button */
-  button[type="submit"] {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+.styled-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* Limit the form width */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 2vw;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Styling for form rows */
+.form-row {
+  margin-bottom: 20px;
+}
+
+/* Styling for labels */
+label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #333;
+  display: block;
+}
+
+/* Styling for text inputs and textareas */
+input[type="text"],
+textarea,
+input[type="file"],
+input[type="number"],
+input[type="url"],
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+  margin-bottom: 5px ;
+  background-color: #f5f5f5;
+}
+
+/* Styling for buttons */
+.styled-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.styled-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.styled-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+/* Styling for the rating input */
+.rating-input {
+  width: 100px;
+}

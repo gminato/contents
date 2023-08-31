@@ -9,7 +9,7 @@ import {
 
 @Component({
   selector: 'app-wallpaper-management-form',
-  templateUrl: './wallpaper-management-form.component.html',
+  templateUrl: 'wallpaper-management-form.component.html',
   styleUrls: ['./wallpaper-management-form.component.css'],
 })
 export class WallpaperManagementFormComponent implements OnInit {

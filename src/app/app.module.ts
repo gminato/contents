@@ -9,13 +9,11 @@ import { MatCardModule } from '@angular/material/card';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManagementFormComponent } from './management-form/management-form.component';
-import { WallpaperManagementFormComponent } from './wallpaper-management-form/wallpaper-management-form.component';
 import { MatSelectModule } from '@angular/material/select';
-import { TunesManagementFormComponent } from './tunes-management-form/tunes-management-form.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { TunesIngestionFormComponent } from './tunes-management-form/tunes-management-form.component';
-import { WallpaperIngestionFormComponent } from './wallpaper-management-form/wallpaper-management-form.component';
+import { TunesIngestionFormComponent } from './management-form/management-form.component';
+import { WallpaperIngestionFormComponent } from './management-form/management-form.component';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -29,8 +27,6 @@ import { SoftwareManagementFormComponent } from './management-form/management-fo
   declarations: [
     AppComponent,
     ManagementFormComponent,
-    WallpaperManagementFormComponent,
-    TunesManagementFormComponent,
     TunesIngestionFormComponent,
     WallpaperIngestionFormComponent,
     SoftwareManagementFormComponent,

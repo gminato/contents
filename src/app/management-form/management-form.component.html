@@ -1,2 +1,44 @@
+<mat-card class="mat-elevation-z8" style="width: 90%;">
+        
+  <mat-button-toggle-group [(ngModel)]="chosenContent" style="display: flex;justify-content: end;" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="application">Application</mat-button-toggle>
+      <mat-button-toggle value="tunes">Tunes</mat-button-toggle>
+      <mat-button-toggle value="wallpaper">Wallpaper</mat-button-toggle>
+    </mat-button-toggle-group>
+      <!-- App Name Column -->
+  <mat-table [dataSource]="appJson" class="mat-elevation-z8">
 
-  <button (click) = "openDialog('tunes')">Open Dialog</button>  
+      <ng-container matColumnDef="appName">
+        <mat-header-cell *matHeaderCellDef> App Name </mat-header-cell>
+        <mat-cell *matCellDef="let app"> {{ app.name }} </mat-cell>
+      </ng-container>
+    
+      <!-- App Type Column -->
+      <ng-container matColumnDef="appType">
+        <mat-header-cell *matHeaderCellDef> App Type </mat-header-cell>
+        <mat-cell *matCellDef="let app"> {{ app.type }} </mat-cell>
+      </ng-container>
+    
+      <!-- Uploaded By Column -->
+      <ng-container matColumnDef="uploadedBy">
+        <mat-header-cell *matHeaderCellDef> Uploaded By </mat-header-cell>
+        <mat-cell *matCellDef="let app"> {{ app.metadata.lastupdatedby }} </mat-cell>
+      </ng-container>
+    
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let app"> {{ app.status }} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</mat-card>
+
+
+<button  (click) = "openDialog(chosenContent)" style="position: fixed;
+bottom: 1rem;
+right: 1rem;" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+  <mat-icon>add</mat-icon>
+</button>

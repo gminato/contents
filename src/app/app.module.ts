@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +15,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { TunesIngestionFormComponent } from './management-form/management-form.component';
 import { WallpaperIngestionFormComponent } from './management-form/management-form.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -44,6 +47,8 @@ import { SoftwareManagementFormComponent } from './management-form/management-fo
     MatTableModule,
     MatIconModule,
     MatDialogModule,
+    FormsModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

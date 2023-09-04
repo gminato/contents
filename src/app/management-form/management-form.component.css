@@ -1,3 +1,10 @@
+.app-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2rem;
+  padding: 3rem;
+}
+
 .styled-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);  /* Limit the form width */
@@ -30,6 +37,7 @@ textarea,
 input[type="file"],
 input[type="number"],
 input[type="url"],
+input[type="email"],
 select {
   padding: 10px;
   border: 1px solid #ccc;

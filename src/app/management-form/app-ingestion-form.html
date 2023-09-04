@@ -1,56 +1,277 @@
-<form style="width: 50vw;" [formGroup]="appForm" (ngSubmit)="onSubmit()" class="styled-form">
-  <div class="form-row">
-    <label for="appname">App Name</label>
-    <input type="text" id="appname" formControlName="appname" required placeholder="Enter app name">
-    <div *ngIf="appForm.get('appname').invalid && appForm.get('appname').touched" class="error-message">
+<form [formGroup]="appForm" class="app-form" (ngSubmit)="onSubmit()">
+  <div class="form-group col">
+    <label for="name">App Name <span class="required">*</span></label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+      required
+    />
+    <!-- Display a validation error message for the 'name' field -->
+    <div *ngIf="appForm.get('name').hasError('required')" class="text-danger">
       App Name is required.
     </div>
-    
-    <label for="type">Type</label>
-    <select id="type" formControlName="type" required>
-      <option value="apk">APK</option>
-    </select>
-    <div *ngIf="appForm.get('type').invalid && appForm.get('type').touched" class="error-message">
-      Type is required.
+  </div>
+
+  <div class="form-group col">
+    <label for="type">App Type <span class="required">*</span></label>
+    <input
+      type="text"
+      class="form-control"
+      id="type"
+      formControlName="type"
+      required
+    />
+    <!-- Display a validation error message for the 'type' field -->
+    <div *ngIf="appForm.get('type').hasError('required')" class="text-danger">
+      App Type is required.
     </div>
   </div>
-  
-  <div class="form-row">
-    <label for="file">File (APK Only)</label>
-    <input type="file" id="file" formControlName="file" accept=".apk" required>
-    <div *ngIf="appForm.get('file').invalid && appForm.get('file').touched" class="error-message">
-      Please choose a valid APK file.
-    </div>
-    
-    <label for="icon">Icon</label>
-    <input type="url" id="icon" formControlName="icon" placeholder="Enter icon URL">
+
+  <div class="form-group col">
+    <label for="developerAddress">Developer Address</label>
+    <input
+      type="text"
+      class="form-control"
+      id="developerAddress"
+      formControlName="developerAddress"
+    />
   </div>
-  
-  <div class="form-row">
-    <label for="label">Label</label>
-    <input type="text" id="label" formControlName="label" placeholder="Enter label">
-    
+
+  <div class="form-group col">
+    <label for="website">Website</label>
+    <input
+      type="url"
+      class="form-control"
+      id="website"
+      formControlName="website"
+    />
+    <!-- Display a validation error message for the 'website' field -->
+    <div *ngIf="appForm.get('website').hasError('url')" class="text-danger">
+      Please enter a valid URL for the website.
+    </div>
+  </div>
+
+  <!-- Column 2 -->
+  <div class="form-group col">
+    <label for="thumbnail">Thumbnail URL</label>
+    <input
+      type="url"
+      class="form-control"
+      id="thumbnail"
+      formControlName="thumbnail"
+    />
+    <!-- Display a validation error message for the 'thumbnail' field -->
+    <div *ngIf="appForm.get('thumbnail').hasError('url')" class="text-danger">
+      Please enter a valid URL for the thumbnail.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="screenshotUrls">Screenshot URLs</label>
+
+    <!-- Display a list of added screenshot URLs -->
+    <div *ngFor="let urlControl of screenshotUrlsArray.controls; let i = index">
+      <div class="input-group mb-2">
+        <input
+          type="url"
+          class="form-control"
+          [formControlName]="i"
+          placeholder="Enter screenshot URL"
+        />
+
+        <div class="input-group-append">
+          <button
+            mat-button
+            color="primary"
+            class="btn btn-danger"
+            type="button"
+            (click)="removeScreenshotUrl(i)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add a new screenshot URL -->
+    <button
+      mat-button
+      color="accent"
+      type="button"
+      (click)="addScreenshotUrl()"
+    >
+      Add Screenshot URL
+    </button>
+
+    <!-- Display a validation error message for the 'screenshotUrls' field -->
+    <div
+      *ngIf="appForm.get('screenshotUrls').hasError('pattern')"
+      class="text-danger"
+    >
+      Please enter valid URLs for the screenshot.
+    </div>
+  </div>
+
+  <!-- Column 1 -->
+  <div class="form-group col">
+    <label for="rating">Rating (0-5)</label>
+    <input
+      type="number"
+      class="form-control"
+      id="rating"
+      formControlName="rating"
+      min="0"
+      max="5"
+      step="0.01"
+    />
+    <!-- Display a validation error message for the 'rating' field -->
+    <div *ngIf="appForm.get('rating').hasError('min')" class="text-danger">
+      Rating must be at least 0.
+    </div>
+    <div *ngIf="appForm.get('rating').hasError('max')" class="text-danger">
+      Rating must be at most 5.
+    </div>
+  </div>
+
+  <div class="form-group col">
     <label for="description">Description</label>
-    <textarea id="description" formControlName="description" placeholder="Enter description"></textarea>
+    <textarea
+      class="form-control"
+      id="description"
+      formControlName="description"
+    ></textarea>
   </div>
-  
-  <div class="form-row">
-    <label for="rating">Rating</label>
-    <input type="number" id="rating" formControlName="rating" step="0.01" required class="rating-input" placeholder="Enter rating">
-    
-    <label for="downloads">Downloads</label>
-    <input type="text" id="downloads" formControlName="downloads" placeholder="Enter download count">
+
+  <!-- Column 2 -->
+  <div class="form-group col">
+    <label for="developerEmail">Developer Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="developerEmail"
+      formControlName="developerEmail"
+    />
+    <!-- Display a validation error message for the 'developerEmail' field -->
+    <div
+      *ngIf="appForm.get('developerEmail').hasError('email')"
+      class="text-danger"
+    >
+      Please enter a valid email address.
+    </div>
   </div>
-  
-  <div class="form-row">
-    <label for="size">Size</label>
-    <input type="text" id="size" formControlName="size" placeholder="Enter app size">
-    
-    <label for="apptype">App Type</label>
-    <input type="text" id="apptype" formControlName="apptype" placeholder="Enter app type">
+
+  <div class="form-group col">
+    <label for="shortDescription">Short Description</label>
+    <input
+      type="text"
+      class="form-control"
+      id="shortDescription"
+      formControlName="shortDescription"
+    />
   </div>
-  
-  <div class="form-row">
-    <button type="submit" [disabled]="appForm.invalid" class="styled-button">Submit</button>
+
+  <!-- Add the remaining form controls and error messages here -->
+  <!-- Column 1 -->
+  <div class="form-group col">
+    <label for="version">Version</label>
+    <input
+      type="text"
+      class="form-control"
+      id="version"
+      formControlName="version"
+    />
   </div>
+
+  <div class="form-group col">
+    <label for="fileLink">File Link</label>
+    <input
+      type="url"
+      class="form-control"
+      id="fileLink"
+      formControlName="fileLink"
+    />
+    <!-- Display a validation error message for the 'fileLink' field -->
+    <div
+      *ngIf="appForm.get('fileLink').hasError('required')"
+      class="text-danger"
+    >
+      File Link is required.
+    </div>
+    <div
+      *ngIf="appForm.get('fileLink').hasError('invalidUrl')"
+      class="text-danger"
+    >
+      Please enter a valid URL for the File Link.
+    </div>
+  </div>
+
+  <!-- Column 2 -->
+  <div class="form-group col">
+    <label for="createdby">Created By</label>
+    <input
+      type="text"
+      class="form-control"
+      id="createdby"
+      formControlName="createdby"
+    />
+  </div>
+
+  <div class="form-group col">
+    <label for="lastupdatedby">Last Updated By</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastupdatedby"
+      formControlName="lastupdatedby"
+    />
+  </div>
+
+  <!-- Add the remaining form controls and error messages here -->
+
+  <!-- Column 1 -->
+  <div class="form-group col">
+    <label for="appBanner">App Banner</label>
+    <input
+      type="url"
+      class="form-control"
+      id="appBanner"
+      formControlName="appBanner"
+    />
+    <!-- Display a validation error message for the 'appBanner' field -->
+    <div *ngIf="appForm.get('appBanner').hasError('url')" class="text-danger">
+      Please enter a valid URL for the app banner.
+    </div>
+  </div>
+
+  <div class="form-group col">
+    <label for="packageName">Package Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="packageName"
+      formControlName="packageName"
+    />
+  </div>
+
+  <!-- Column 2 -->
+  <div class="form-group col">
+    <label for="developerName">Developer Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="developerName"
+      formControlName="developerName"
+    />
+  </div>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    class="btn btn-primary"
+  >
+    Submit
+  </button>
 </form>
